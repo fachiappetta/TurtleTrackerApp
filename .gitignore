@@ -1,5 +1,5 @@
 #Ignore OpenSpyder file
-OpenSpyder
+OpenSpyder.bat
 #Ignore spyproject folder
 .spyproject/*
 
