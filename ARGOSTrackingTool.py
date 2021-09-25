@@ -10,7 +10,7 @@
 #--------------------------------------------------------------
 
 #Ask user for the search date
-user_date = input("Enter date to search for Sara:")
+user_date = input("Enter date to search for Sara: ")
 
 # create a variable pointing to thje data file
 file_name ="./data/raw/sara.txt"
@@ -52,16 +52,21 @@ for lineString in line_list:
 #create empty list to hold matching keys
 matching_keys = []
 
-#loop through items in the the date_dict, and collect keys for matching ones
-for date_item in date_dict.items():
-	#get the date of the item
-	the_key, the_date = date_item
-	#see if the date matches the user date
-	if the_date == user_date:
-		#if so,add the key to the list
-		matching_keys.append(the_key)
+# Check that at least one key was returned; tell the user if not.
+if len(matching_keys) == 0:
+    print ("No observations recorded for {}".format(user_date))
+else:
+	#loop through items in the the date_dict, and collect keys for matching ones
+	for date_item in date_dict.items():
+		#get the date of the item
+		the_key, the_date = date_item
+		#see if the date matches the user date
+		if the_date == user_date:
+			#if so,add the key to the list
+			matching_keys.append(the_key)
+			
+	#reveal locations for each key in matching_keys
+	for matching_key in matching_keys:
+		obs_lat, obs_lon = coord_dict[matching_key]
+		print(f"Record {matching_key} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {user_date}")
 		
-#reveal locations for each key in matching_keys
-for matching_key in matching_keys:
-	obs_lat, obs_lon = coord_dict[matching_key]
-	print(f"Record {matching_key} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {user_date}")
