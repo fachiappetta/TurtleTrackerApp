@@ -21,6 +21,11 @@ line_list = file_object.readlines()
 #close the file
 file_object.close()
 
+#create two empty dictionary objects
+date_dict = {}
+coord_dict = {}
+
+
 # Iterate through all lines in the line list
 for lineString in line_list:
 	if lineString[0] in ("#", "u"):
@@ -32,13 +37,15 @@ for lineString in line_list:
 	# Assign variables to specfic items in the list
 	record_id = lineData[0]   # ARGOS tracking record ID
 	obs_date = lineData[2]   # Observation date
-	ob_lc = lineData[4]       # Observation Location Class
+	obs_lc = lineData[4]       # Observation Location Class
 	obs_lat = lineData[6]     # Observation Latitude
 	obs_lon = lineData[7]     # Observation Longitude
 	
-	# Print information to the use
-	print(f"Record {record_id} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {obs_date}")
-
+	# Print information id lc is 1,2,3,
+	if obs_lc in ("1","2","3"):
+		print(f"Record {record_id} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {obs_date}")
+		date_dict[record_id] = obs_date
+		coord_dict[record_id] = (obs_lat, obs_lon)
 
 
 
